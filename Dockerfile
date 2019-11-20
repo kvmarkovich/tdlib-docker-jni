@@ -1,10 +1,10 @@
 FROM openjdk:8-alpine as builder
-
-RUN apk update && apk add git alpine-sdk openssl-dev zlib-dev gperf cmake
+  
+RUN apk update && apk add git alpine-sdk openssl-dev zlib-dev gperf cmake linux-headers
 
 WORKDIR /tmp/_build_tdlib
 RUN git clone https://github.com/tdlib/td.git .
-RUN git checkout v1.3.0
+RUN git checkout 818279238c9fd3daa839f8232e6948c93da7fe51
 
 WORKDIR /tmp/_build_tdlib/jnibuild
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DTD_ENABLE_JNI=ON -DCMAKE_INSTALL_PREFIX:PATH=../example/java/td ..
